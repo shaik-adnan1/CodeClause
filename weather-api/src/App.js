@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.scss';
+import { useContext } from "react"; 
 
-function App() {
+import "./App.scss";
+
+import ForecastCard from "./components/forecastCard/forecastCard.component";
+import { WeatherDataContext } from "./context/weatherData.context";
+// require('dotenv').config();
+
+const App = () => {
+  // console.log(process.env.REACT_APP_API_KEY);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ForecastCard />
+    </>
   );
 }
 
