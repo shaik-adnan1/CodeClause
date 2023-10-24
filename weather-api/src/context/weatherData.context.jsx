@@ -1,21 +1,17 @@
 import { createContext, useEffect, useState } from "react";
 
+import { fetchData } from "../fetchData";
+
 export const WeatherDataContext = createContext({
   weatherData: null,
+  weatherDataLocation: null,
 });
 
-// function gotPosition(position) {
-//     return position.coords;
-// }
-
-//     // fetch current location;
-
-//     const fetchLocation = async () => {
-
-//     }
+// fetch weather data based on location
 
 export const WeatherDataProvider = ({ children }) => {
   const [weatherData, setWeatherData] = useState({});
+  //   const [weatherDataLocation, setWeatherDataLocation] = useState({});
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -33,6 +29,18 @@ export const WeatherDataProvider = ({ children }) => {
     fetchLocation();
   }, []);
 
+  useEffect(() => {
+    const { latitude, longitude } = weatherData;
+    
+    const getFetchedData = async () => {
+      const data = await fetchData(latitude, longitude);
+      // setWeatherDataLocation(data);
+      console.log(data);
+    };
+
+    getFetchedData();
+  }, [weatherData]);
+
   // fetch location's weather data
 
   // useEffect(() => {
@@ -43,6 +51,7 @@ export const WeatherDataProvider = ({ children }) => {
 
   const value = {
     weatherData,
+    // weatherDataLocation
   };
 
   return (
