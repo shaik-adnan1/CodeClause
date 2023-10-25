@@ -3,26 +3,26 @@ import { createContext, useEffect, useState } from "react";
 import { fetchData } from "../fetchData";
 
 export const WeatherDataContext = createContext({
+  locationData: null,
   weatherData: null,
-  weatherDataLocation: null,
 });
 
 // fetch weather data based on location
 
 export const WeatherDataProvider = ({ children }) => {
-  const [weatherData, setWeatherData] = useState({});
-  //   const [weatherDataLocation, setWeatherDataLocation] = useState({});
+  const [locationData, setLocationData] = useState({});
+    const [weatherData, setWeatherData] = useState({});
 
   useEffect(() => {
     const fetchLocation = async () => {
       await navigator.geolocation.getCurrentPosition(
         pos => {
           // Handle successful geolocation here
-          setWeatherData(pos.coords);
+          setLocationData(pos.coords);
         },
         err => {
           // Handle geolocation error here
-          setWeatherData(err.message);
+          setLocationData(err);
         }
       );
     };
@@ -30,28 +30,29 @@ export const WeatherDataProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const { latitude, longitude } = weatherData;
-    
+    const { latitude, longitude } = locationData;
+
     const getFetchedData = async () => {
-      const data = await fetchData(latitude, longitude);
-      // setWeatherDataLocation(data);
-      console.log(data);
+
+      const data = latitude && await fetchData(latitude.toFixed(2), longitude.toFixed(2)) || "Loading...";
+      // setlocationDataLocation(data);
+      setWeatherData(data)
     };
 
     getFetchedData();
-  }, [weatherData]);
+  }, [locationData]);
 
   // fetch location's weather data
 
   // useEffect(() => {
   //     const Wdata = fetchLocation().then(res => res.json()).then(data => data).catch(err => console.log(err))
-  //     // setWeatherData(Wdata);
+  //     // setlocationData(Wdata);
   //     console.log(Wdata);
   // }, []);
 
   const value = {
-    weatherData,
-    // weatherDataLocation
+    locationData,
+    weatherData
   };
 
   return (

@@ -2,13 +2,13 @@ import { useContext, useEffect } from "react";
 import { WeatherDataContext } from "../../context/weatherData.context";
 
 const ForecastCard = () => {
-  const { weatherData } = useContext(WeatherDataContext);
-  const { latitude, longitude } = weatherData;
+  const { locationData, weatherData } = useContext(WeatherDataContext);
+  const { latitude, longitude } = locationData;
 
-  const locationSearchHandler = (e) => {
-    e.preventDefault();
-    console.log(e.target.value)
-  }
+  // const locationSearchHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.value)
+  // }
 
   return (
     // useEffect(() => {
@@ -21,10 +21,11 @@ const ForecastCard = () => {
             ? `${latitude.toFixed(2)} ${longitude.toFixed(2)}`
             : "loding..."}
         </h1>
+        {console.log(weatherData)}
 
         {/* Overcast, Sunny*/}
-        <input type="text" className="searchLocation" onChange={locationSearchHandler}/>
-        <input type="button" value="Search" />
+        {/* <input type="text" className="searchLocation" onChange={locationSearchHandler}/>
+        <input type="button" value="Search" /> */}
       </div>
     </>
   );
