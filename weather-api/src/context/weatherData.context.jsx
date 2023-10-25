@@ -5,7 +5,12 @@ import { fetchData } from "../fetchData";
 export const WeatherDataContext = createContext({
   locationData: null,
   weatherData: null,
+  padDates: () => null
 });
+
+const padDates = (num) => {
+  return num.toString().padStart(2, '0');
+}
 
 // fetch weather data based on location
 
@@ -52,7 +57,8 @@ export const WeatherDataProvider = ({ children }) => {
 
   const value = {
     locationData,
-    weatherData
+    weatherData,
+    padDates
   };
 
   return (
