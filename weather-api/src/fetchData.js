@@ -23,34 +23,36 @@ export const fetchData = async(lat, long) => {
 
 } 
 
-const codeLookUp = (array, code) => {
-  const lookUp = {}
-  array.forEach(item => {
-    lookUp[item.code] = item;
-  })
+// fetchForecastData = 
 
-  const iconData = lookUp[code]
+// const codeLookUp = (array, code) => {
+//   const lookUp = {}
+//   array.forEach(item => {
+//     lookUp[item.code] = item;
+//   })
 
-  if(iconData) {
-    return iconData.icon
-  } else {
-    throw new Error("Icon not found with the code " + code)
-  }
-}
+//   const iconData = lookUp[code]
 
-export const fetchIconData = async (code) => {
+//   if(iconData) {
+//     return iconData.icon
+//   } else {
+//     throw new Error("Icon not found with the code " + code)
+//   }
+// }
 
-  try {
+// export const fetchIconData = async (code) => {
+
+//   try {
       
-    const response = await fetch(
-        "https://www.weatherapi.com/docs/weather_conditions.json"
-      ).then(res => res.json());
-       const iconCode = await codeLookUp(response, code);
-       return iconCode;
-  } catch(err) {
-    throw new Error("Error fetching iconData: " + err.message);
-  }
+//     const response = await fetch(
+//         "https://www.weatherapi.com/docs/weather_conditions.json"
+//       ).then(res => res.json());
+//        const iconCode = await codeLookUp(response, code);
+//        return iconCode;
+//   } catch(err) {
+//     throw new Error("Error fetching iconData: " + err.message);
+//   }
 
 
  
-}
+// }
