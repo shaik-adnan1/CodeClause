@@ -1,10 +1,25 @@
 .app_container {
-  background-image: url("./assets/images/clear_sky.jpg");
+  // background-image: url("./assets/images/day_bg.jpg");
   background-position: center;
   background-size: cover;
   height: 100vh;
   width: 100%;
   padding: 3rem;
-  
+  border: 1px solid #fff;  
   color: #fff;
+}
+
+.day {
+  background-image: url("./assets/images/day_bg.jpg");
+}
+.night {
+  color: #dbd8d8;
+  background-image: url("./assets/images/night_bg.jpg");
+}
+
+.loading_spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
