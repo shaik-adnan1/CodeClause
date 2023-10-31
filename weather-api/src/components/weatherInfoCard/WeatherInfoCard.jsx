@@ -2,9 +2,8 @@ import "./WeatherInfoCard.style.scss";
 
 import { useContext, useEffect, useState } from "react";
 import { WeatherDataContext } from "../../context/weatherData.context";
+
 import ForecastCard from "../foreCastCard/foreCastCard.component";
-
-
 // import { fetchIconData } from "../../fetchData";
 
 const WeatherInfoCard = () => {
@@ -36,7 +35,7 @@ const WeatherInfoCard = () => {
       const fetchWeatherIcon = async () => {
         try {
           const weatherText = current.condition.text.toLowerCase();
-          const joinedText = weatherText.split(" ").join('-')
+          const joinedText = weatherText.split(" ").join("-");
           await setMainWeatherIcon(joinedText); // Update mainWeatherIcon with the fetched icon data
         } catch (error) {
           console.error("Error fetching icon data:", error);
@@ -44,7 +43,6 @@ const WeatherInfoCard = () => {
         console.log(location);
       };
       fetchWeatherIcon();
-
     }
   }, [current]);
   return (
@@ -67,7 +65,7 @@ const WeatherInfoCard = () => {
             <div className='temp_main'>
               <span>
                 <img
-                  className='weatherIcon' // ${current.condition.text.toLowerCase()} mm m 
+                  className='weatherIcon' // ${current.condition.text.toLowerCase()} mm m
                   src={require(`../../assets/weather_icons/${mainWeatherIcon}_${
                     current.is_day ? "day" : "night"
                   }.png`)}
@@ -117,7 +115,7 @@ const WeatherInfoCard = () => {
           </div>
         </div>
       </div>
-      <div className="forecast_container">
+      <div className='forecast_section'>
         <ForecastCard />
       </div>
       {/* ) : (
